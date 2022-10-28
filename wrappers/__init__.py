@@ -1,0 +1,2 @@
+from wrappers.poseWrapper import PoseDetector
+from wrappers.detectionWrapper import Detector

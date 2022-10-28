@@ -1,0 +1,5 @@
+{
+  "pose_weights": "weights/yolov7-w6-pose.pt",
+  "detector_weights": "weights/yolov7-w6-pose.pt",
+  "test_directory": "images"
+}
