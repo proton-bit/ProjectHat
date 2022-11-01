@@ -29,7 +29,7 @@
                         link: None
                      - [ ] write pipeline
                      - [ ] train net
-    5. - [x] Write information into json sheet
+       - [x] Write information into json sheet
        - [x] write parser 
        - [x] collect annotations
 
