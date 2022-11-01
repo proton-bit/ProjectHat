@@ -8,6 +8,7 @@
     - [x] integrate filter to given react app 
 
 2. Collect info from photo
+    - [ ] Choose boxes contain people that we focus on
     - [ ] Blur (general defocus and specific people)
     - [x] Number of people 
     - [x] Facial expressions/features
