@@ -30,8 +30,8 @@
                      - [ ] write pipeline
                      - [ ] train net
     5. - [x] Write information into json sheet
-        - [x] write parser 
-        - [x] collect annotations
+       - [x] write parser 
+       - [x] collect annotations
 
 3. Installing a hat. Maybe via special constructor
     - [x] Detect person 
