@@ -11,12 +11,11 @@
     - [ ] Blur (general defocus and specific people)
     - [x] Number of people 
     - [x] Facial expressions/features
-        - [ ] main approaches:
-            - [x] via yolo -> mediapipe
-                - [x] write mediapipe wrapper
-                - [x] localize head
-                - [x] apply NMS
-                - [x] compute features using position of landmarks
+        - [x] yolo -> mediapipe
+            - [x] write mediapipe wrapper
+            - [x] localize head
+            - [x] apply NMS
+            - [x] compute features using position of landmarks
        - [x] Write information into json sheet
        - [x] write parser 
        - [x] collect annotations
