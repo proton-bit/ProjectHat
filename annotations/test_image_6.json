@@ -1,0 +1,11 @@
+{
+    "number_of_persons": 2,
+    "persons": {
+        "person_1": {
+            "eyeOpened": true
+        },
+        "person_2": {
+            "eyeOpened": false
+        }
+    }
+}

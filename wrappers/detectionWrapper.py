@@ -6,16 +6,17 @@ import cv2
 sys.path.append("yolov7")
 from yolov7.models.experimental import attempt_load
 from yolov7.utils.general import non_max_suppression_kpt
-from yolov7.utils.plots import output_to_keypoint, plot_skeleton_kpts
+from yolov7.utils.plots import output_to_keypoint
+
 
 class Detector:
     def __init__(
             self,
-            weights_path : str,
-            device : torch.device = torch.device("cpu"),
-            image_size : int = 640,
-            conf_thresh : float = 0.25,
-            iou_thresh : float = 0.65
+            weights_path: str,
+            device: torch.device = torch.device("cpu"),
+            image_size: int = 640,
+            conf_thresh: float = 0.25,
+            iou_thresh: float = 0.65
     ) -> None:
         self.model = attempt_load(weights_path)
         self.device = device
@@ -23,7 +24,7 @@ class Detector:
         self.conf_thresh = conf_thresh
         self.iou_thresh = iou_thresh
 
-    def prepare_image(self, image : np.ndarray) -> torch.tensor:
+    def prepare_image(self, image: np.ndarray) -> torch.tensor:
         # Resize image to the inference size
         orig_h, orig_w = image.shape[:2]
         image = cv2.resize(image, (self.image_size, self.image_size))
@@ -51,8 +52,7 @@ class Detector:
         with torch.no_grad():
             return self.model(image[None], augment=False)[0]
 
-    def predict_keypoints(self, image : np.ndarray) -> np.ndarray:
-
+    def predict_keypoints(self, image: np.ndarray) -> np.ndarray:
         orig_h, orig_w, image_pt = self.prepare_image(image)
 
         pred = self.inference_model(image_pt)
@@ -60,6 +60,3 @@ class Detector:
         pred = self.prepare_outputs(pred)
 
         return pred
-
-
-

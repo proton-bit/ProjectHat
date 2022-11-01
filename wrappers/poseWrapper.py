@@ -4,6 +4,8 @@ import sys
 import cv2
 import json
 
+from .faceMeshWrapper import FaceMeshWrapper
+from .NMS import NMS
 
 sys.path.append("yolov7")
 from yolov7.models.experimental import attempt_load
@@ -16,10 +18,11 @@ class PoseDetector:
             weights_path : str,
             device : torch.device = torch.device("cpu"),
             image_size : int = 640,
-            conf_thresh : float = 0.25,
+            conf_thresh : float = 0.75,
             iou_thresh : float = 0.65
     ) -> None:
         self.model = attempt_load(weights_path, map_location=device)
+        self.faceMesh = FaceMeshWrapper()
         self.device = device
         self.image_size = image_size
         self.conf_thresh = conf_thresh
@@ -49,6 +52,25 @@ class PoseDetector:
         pred[:, 1::3] *= orig_h / self.image_size
         return pred
 
+    def separate_head(self, image, kpts, steps = 3):
+
+        # format : [x_coord, y_coord]
+        nose_coords, left_ear, right_ear = [
+            (kpts[steps * kid], kpts[steps * kid + 1]) for kid in [0, 3, 4]
+        ]
+
+        delta = max(
+            abs(nose_coords[0] - left_ear[0]),
+            abs(nose_coords[0] - right_ear[0])
+        )
+
+        head_coords = [int(nose_coords[1]-delta),
+                        int(nose_coords[0] - delta),
+                        int(nose_coords[1]+delta),
+                        int(nose_coords[0]+delta)]
+
+        return head_coords
+
     def inference_model(self, image):
         with torch.no_grad():
             return self.model(image[None], augment=False)[0]
@@ -75,23 +97,26 @@ class PoseDetector:
             path_to_annotations = "annotations/annotation.json"
     ) -> None:
 
+        head_coords = [self.separate_head(image, pred[p_idx].T, 3) for p_idx in range(pred.shape[0])]
+        head_coords = NMS(np.array(head_coords))
+        heads = [
+            image[
+               head_coord[0]:head_coord[2],
+               head_coord[1]:head_coord[3]
+               ] for head_coord in head_coords
+        ]
+
         # Data to be written
         dictionary = {
-            "number_of_persons": len(pred),
-            "persons" : dict()
+            "number_of_persons": len(heads),
+            "persons": dict()
         }
 
-        for person_index in range(pred.shape[0]):
-            eyesOpen = True
-            isSmiling = True
-            isBlured = False
-            person_description = dict(
-                eyesOpen = eyesOpen,
-                isSmiling = isSmiling,
-                isBlured = isBlured,
-            )
-            print(f"person_{person_index+1}", person_description)
-            dictionary["persons"][f"person_{person_index+1}"] = person_description
+        for person_index, head in enumerate(heads):
+            head_annotations = self.faceMesh(head)
+            dictionary["persons"][f"person_{person_index + 1}"] = head_annotations
+            cv2.imshow(f'head_{person_index}', cv2.resize(head, (256, 256)))
+
         # Serializing json
         json_object = json.dumps(dictionary, indent=4)
 

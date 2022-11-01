@@ -10,11 +10,13 @@
 2. Collect info from photo
     - [ ] Blur (general defocus and specific people)
     - [x] Number of people 
-    - [ ] Facial expressions/features
+    - [x] Facial expressions/features
         - [ ] main approaches:
-            - [ ] via yolo -> mediapipe
-                - [ ] write mediapipe wrapper
-                - [ ] compute features using position of landmarks
+            - [x] via yolo -> mediapipe
+                - [x] write mediapipe wrapper
+                - [x] localize head
+                - [x] apply NMS
+                - [x] compute features using position of landmarks
 
             - [ ] head-on solution
                 - [ ] Closed eyes
@@ -27,9 +29,9 @@
                         link: None
                      - [ ] write pipeline
                      - [ ] train net
-    5. - [ ] Write information into json sheet
+    5. - [x] Write information into json sheet
         - [x] write parser 
-        - [ ] collect annotations
+        - [x] collect annotations
 
 3. Installing a hat. Maybe via special constructor
     - [x] Detect person 

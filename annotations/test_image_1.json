@@ -1,0 +1,17 @@
+{
+    "number_of_persons": 4,
+    "persons": {
+        "person_1": {
+            "eyeOpened": true
+        },
+        "person_2": {
+            "eyeOpened": true
+        },
+        "person_3": {
+            "eyeOpened": false
+        },
+        "person_4": {
+            "eyeOpened": false
+        }
+    }
+}
