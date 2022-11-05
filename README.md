@@ -8,7 +8,7 @@
     - [x] integrate filter to given react app 
 
 2. Collect info from photo
-    - [ ] Choose boxes contain people that we focus on
+    - [x] Choose boxes contain people that we focus on
     - [ ] Blur (general defocus and specific people)
     - [x] Number of people 
     - [x] Facial expressions/features
@@ -23,7 +23,7 @@
 
 3. Installing a hat. Maybe via special constructor
     - [x] Detect person 
-    - [ ] Choose boxes contain people that we focus on
+    - [x] Choose boxes contain people that we focus on
     - [x] Detect face landmarks 
     - [ ] compute center (x, y) coordinate of forehead
     - [ ] Install Hat
