@@ -14,7 +14,7 @@
                 3. apply NMS ✅
                 4. compute features using position of landmarks
                     1. closed eyes ✅
-                    2. mouth expressions
+                    2. mouth expressions 
 
             2. head-on solution ⛔️
                 1. Closed eyes
@@ -33,7 +33,7 @@
 
 3. Installing a hat. Maybe via special constructor
     1. Detect person ✅
-    2. Choose boxes contain people that we focus on
+    2. Choose boxes contain people that we focus on ✅
     3. Detect face landmarks ✅
     4. compute center (x, y) coordinate of forehead
     5. Install Hat
