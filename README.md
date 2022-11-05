@@ -26,4 +26,5 @@
     - [x] Choose boxes contain people that we focus on
     - [x] Detect face landmarks 
     - [ ] compute center (x, y) coordinate of forehead
+    - [ ] adjust the mask to the position of the head
     - [ ] Install Hat
