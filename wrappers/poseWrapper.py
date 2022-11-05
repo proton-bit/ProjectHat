@@ -4,13 +4,13 @@ import sys
 import cv2
 import json
 
-from .faceMeshWrapper import FaceMeshWrapper
+# from .faceMeshWrapper import FaceMeshWrapper
 from .NMS import NMS
 
-sys.path.append("yolov7")
-from yolov7.models.experimental import attempt_load
-from yolov7.utils.general import non_max_suppression_kpt
-from yolov7.utils.plots import output_to_keypoint, plot_skeleton_kpts
+# sys.path.append("yolov7")
+# from yolov7.models.experimental import attempt_load
+# from yolov7.utils.general import non_max_suppression_kpt
+# from yolov7.utils.plots import output_to_keypoint, plot_skeleton_kpts
 
 class PoseDetector:
     def __init__(
@@ -97,6 +97,9 @@ class PoseDetector:
             path_to_annotations = "annotations/annotation.json"
     ) -> None:
 
+        min_area = image.shape[0] * image.shape[1] * 0.005
+        find_area = lambda a: abs(a[2] - a[0]) * abs(a[3] - a[1])
+
         head_coords = [self.separate_head(image, pred[p_idx].T, 3) for p_idx in range(pred.shape[0])]
         head_coords = NMS(np.array(head_coords))
         heads = [
@@ -104,6 +107,7 @@ class PoseDetector:
                head_coord[0]:head_coord[2],
                head_coord[1]:head_coord[3]
                ] for head_coord in head_coords
+            if find_area(head_coord) > min_area
         ]
 
         # Data to be written
@@ -115,7 +119,8 @@ class PoseDetector:
         for person_index, head in enumerate(heads):
             head_annotations = self.faceMesh(head)
             dictionary["persons"][f"person_{person_index + 1}"] = head_annotations
-            cv2.imshow(f'head_{person_index}', cv2.resize(head, (256, 256)))
+            if head_annotations["eyeOpened"]:
+                cv2.imshow(f'head_{person_index}', cv2.resize(head, (256, 256)))
 
         # Serializing json
         json_object = json.dumps(dictionary, indent=4)

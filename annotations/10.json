@@ -1,0 +1,41 @@
+{
+    "number_of_persons": 12,
+    "persons": {
+        "person_1": {
+            "eyeOpened": true
+        },
+        "person_2": {
+            "eyeOpened": true
+        },
+        "person_3": {
+            "eyeOpened": true
+        },
+        "person_4": {
+            "eyeOpened": true
+        },
+        "person_5": {
+            "eyeOpened": true
+        },
+        "person_6": {
+            "eyeOpened": true
+        },
+        "person_7": {
+            "eyeOpened": true
+        },
+        "person_8": {
+            "eyeOpened": true
+        },
+        "person_9": {
+            "eyeOpened": true
+        },
+        "person_10": {
+            "eyeOpened": true
+        },
+        "person_11": {
+            "eyeOpened": true
+        },
+        "person_12": {
+            "eyeOpened": true
+        }
+    }
+}

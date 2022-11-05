@@ -1,5 +1,10 @@
 {
-  "pose_weights": "weights/yolov7-w6-pose.pt",
-  "detector_weights": "weights/yolov7-w6-pose.pt",
-  "test_directory": "images"
+  "pose_weights_path":  "weights/yolov7-w6-pose.pt",
+  "detector_weights_path": "weights/yolov5.pt",
+  "yaml_config_path": "weights/coco128.yaml",
+  "images_directory": "images",
+  "annotations_directory": "annotations",
+  "face_mesh_eye_thresh" : 6,
+  "detector_conf_thresh" : 0.5,
+  "max_aspect_ratio": 2.5
 }

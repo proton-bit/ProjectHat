@@ -5,12 +5,12 @@ import math
 import cv2
 
 class FaceMeshWrapper:
-    def __init__(self):
+    def __init__(self, eyeThresh = 5.5):
         self.mp_drawing = mp.solutions.drawing_utils
         self.mp_drawing_styles = mp.solutions.drawing_styles
         self.mp_face_mesh = mp.solutions.face_mesh
         self.drawing_spec = self.mp_drawing.DrawingSpec(thickness=1, circle_radius=1)
-        self.eyeThresh = 5.5
+        self.eyeThresh = eyeThresh
 
     def drawLandmarks(self, image, results):
         annotated_image = image.copy()
@@ -43,7 +43,7 @@ class FaceMeshWrapper:
 
         with self.mp_face_mesh.FaceMesh(
             static_image_mode=True,
-            max_num_faces=5,
+            max_num_faces=1,
             refine_landmarks=True,
             min_detection_confidence=0.5
         ) as face_mesh:
@@ -51,10 +51,8 @@ class FaceMeshWrapper:
 
             # Print and draw face mesh landmarks on the image.
             if not results.multi_face_landmarks:
-                # print("facemesh == None")
                 return None
             else:
-                # print("facemesh detected")
                 return results
 
     def landmarksDetection(self, image, results):
@@ -74,7 +72,7 @@ class FaceMeshWrapper:
         return distance
 
     # Blinking Ratio
-    def blinkRatio(self, image, landmarks, right_indices, left_indices) -> float:
+    def blinkRatio(self, image, landmarks, right_indices, left_indices):
         """
         :
         This function, selects the landmarks for horizontal points,
@@ -116,28 +114,29 @@ class FaceMeshWrapper:
         # Finding ratio of LEFT and Right Eyes
         reRatio = rhDistance / rvDistance
         leRatio = lhDistance / lvDistance
-        ratio = (reRatio + leRatio) / 2
-        return ratio
+        return leRatio, reRatio
 
     def eyesOpened(self, image, mesh) -> bool:
         if mesh:
             landmarks = self.landmarksDetection(image, mesh)
-            blinkRatio = self.blinkRatio(
+            ratios = self.blinkRatio(
                 image,
                 landmarks,
                 mediapipeIndices.RIGHT_EYE,
                 mediapipeIndices.LEFT_EYE,
             )
 
-            if blinkRatio <= self.eyeThresh:
+            if sum(ratios) / 2 <= self.eyeThresh:
                 return True
 
         return False
 
     def __call__(self, image):
         annotations = dict()
+
         if image.shape != (256, 256, 3):
             image = cv2.resize(image, (256, 256))
         mesh = self.predictFaceMesh(image)
         annotations['eyeOpened'] = self.eyesOpened(image, mesh)
+
         return annotations

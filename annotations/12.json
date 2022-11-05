@@ -1,5 +1,5 @@
 {
-    "number_of_persons": 4,
+    "number_of_persons": 3,
     "persons": {
         "person_1": {
             "eyeOpened": true
@@ -8,10 +8,7 @@
             "eyeOpened": true
         },
         "person_3": {
-            "eyeOpened": false
-        },
-        "person_4": {
-            "eyeOpened": false
+            "eyeOpened": true
         }
     }
 }

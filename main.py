@@ -1,38 +1,53 @@
-import os
-import cv2
 import json
-from wrappers import PoseDetector
 
-config = json.load(open("config.json"))
+from wrappers import PipeWrapper
+import argparse
+import cv2
+import os
 
+def print_annotations(annotation, indent = 0):
+    for key, value in annotation.items():
+        if isinstance(value, dict):
+            print('\t' * indent + (("%s: {") % str(key)))
+            print_annotations(value, indent + 1)
+            print('\t' * indent + ' ' + ('}'))
+        elif isinstance(value, list):
+            for val in value:
+                print('\t' * indent + (("%s: [\n") % str(key)))
+                print_annotations(val, indent + 1)
+        else:
+            print('\t' * indent + (("%s: %s") % (str(key), str(value))))
 
-poseDetector = PoseDetector(config["pose_weights"])
-for image_file in os.listdir(config["test_directory"]):
+if __name__ == "__main__":
 
-    image_path = os.path.join(
-        config["test_directory"],
-        image_file
-    )
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--path_to_config', nargs='+', type=str, default='config.json', help='path to config.json')
+    opt = parser.parse_args()
 
-    # to avoid .DS_Store file or etc...
-    if image_file.startswith("."):
-        continue
+    config = json.load(open(opt.path_to_config))
 
-    print(image_path)
-    image = cv2.imread(image_path)
+    pipe = PipeWrapper(config)
+    for filename in os.listdir(config["images_directory"]):
+        # to prevent by reading files such as .DS_Store etc...
+        if filename.startswith("."):
+            continue
 
-    pred = poseDetector.predict_keypoints(image)
+        path_to_image = os.path.join(
+            config["images_directory"],
+            filename
+        )
+        image = cv2.imread(path_to_image)
 
-    annotations_path = os.path.join(
-            "annotations",
-            image_file.replace('jpg', 'json')
-    )
-    print(f"writing annotations to: {annotations_path}")
-    poseDetector.write_annotations(
-        image, pred, annotations_path
+        path_to_annotation = f"{path_to_image[:path_to_image.index('.')]}.json".replace(
+            config['images_directory'],
+            config['annotations_directory']
         )
 
-    image = poseDetector.plot_skeleton(image, pred)
+        annotations = pipe(
+            image, path_to_annotation
+        )
 
-    cv2.imshow(image_file, image)
-    cv2.waitKey(0)
+        print(f"\n{'-'*40}\n")
+        print(f"{path_to_image}")
+        print_annotations(annotations)
+        print(f"\n{'-' * 40}\n")

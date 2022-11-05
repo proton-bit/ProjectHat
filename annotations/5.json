@@ -1,10 +1,13 @@
 {
-    "number_of_persons": 2,
+    "number_of_persons": 3,
     "persons": {
         "person_1": {
             "eyeOpened": true
         },
         "person_2": {
+            "eyeOpened": true
+        },
+        "person_3": {
             "eyeOpened": false
         }
     }
