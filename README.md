@@ -9,7 +9,7 @@
 
 2. Collect info from photo
     - [x] Choose boxes contain people that we focus on
-    - [ ] Blur (general defocus and specific people)
+    - [ ] Detect blurred images (general defocus and specific people)
     - [x] Number of people 
     - [x] Facial expressions/features
         - [x] yolo -> mediapipe
