@@ -6,5 +6,6 @@
   "annotations_directory": "annotations",
   "face_mesh_eye_thresh" : 6,
   "detector_conf_thresh" : 0.5,
+  "blur_thresh": 60,
   "max_aspect_ratio": 2.5
 }

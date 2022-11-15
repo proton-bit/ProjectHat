@@ -1,5 +1,6 @@
 {
     "number_of_persons": 12,
+    "blurry": false,
     "persons": {
         "person_1": {
             "eyeOpened": true
