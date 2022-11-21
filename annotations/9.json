@@ -3,13 +3,19 @@
     "blurry": false,
     "persons": {
         "person_1": {
-            "eyeOpened": true
+            "leftEyeOpened": 1.0,
+            "rightEyeOpened": 1.0,
+            "blurry": true
         },
         "person_2": {
-            "eyeOpened": true
+            "leftEyeOpened": 1.0,
+            "rightEyeOpened": 1.0,
+            "blurry": true
         },
         "person_3": {
-            "eyeOpened": true
+            "leftEyeOpened": 1.0,
+            "rightEyeOpened": 1.0,
+            "blurry": true
         }
     }
 }

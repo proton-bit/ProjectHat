@@ -1,8 +1,14 @@
+import random
+
 import mediapipe as mp
 from .mediapipeIndices import mediapipeIndices
+from .eyesWrapper import EyesWrapper
 import numpy as np
+import json
 import math
 import cv2
+
+config = json.load(open("config.json"))
 
 class FaceMeshWrapper:
     def __init__(self, eyeThresh = 5.5):
@@ -11,6 +17,10 @@ class FaceMeshWrapper:
         self.mp_face_mesh = mp.solutions.face_mesh
         self.drawing_spec = self.mp_drawing.DrawingSpec(thickness=1, circle_radius=1)
         self.eyeThresh = eyeThresh
+        self.eyeWrapper = EyesWrapper(
+            config["eyes_model_weight_path"],
+            config["eye_model_thresh"]
+        )
 
     def drawLandmarks(self, image, results):
         annotated_image = image.copy()
@@ -45,7 +55,7 @@ class FaceMeshWrapper:
             static_image_mode=True,
             max_num_faces=1,
             refine_landmarks=True,
-            min_detection_confidence=0.5
+            min_detection_confidence=0.2
         ) as face_mesh:
             results = face_mesh.process(image)
 
@@ -70,6 +80,32 @@ class FaceMeshWrapper:
         x1, y1 = point1
         distance = math.sqrt((x1 - x) ** 2 + (y1 - y) ** 2)
         return distance
+
+    def separate_eye(self, image, mesh, eye_indices):
+        if mesh is None:
+            return mesh
+        landmarks = self.landmarksDetection(image, mesh)
+        x_coords = []
+        y_coords = []
+
+        for index in eye_indices:
+            x, y = list(landmarks[index])
+            x_coords.append(x)
+            y_coords.append(y)
+
+        min_y, max_y = min(y_coords), max(y_coords)
+        min_x, max_x = min(x_coords), max(x_coords)
+
+        delta_y, delta_x = max_y - min_y, max_x - min_x
+        delta = int(max(delta_x, delta_y) * 0.75)
+
+        y_mean, x_mean = (min_y+max_y)/2, (min_x+max_x)/2
+        max_y = min(image.shape[0], int(y_mean + delta))
+        min_y = max(0, int(y_mean - delta))
+        max_x = min(image.shape[1], int(x_mean + delta_x))
+        min_x = max(0, int(x_mean - delta))
+        eye = image[min_y:max_y, min_x:max_x]
+        return eye
 
     # Blinking Ratio
     def blinkRatio(self, image, landmarks, right_indices, left_indices):
@@ -116,7 +152,7 @@ class FaceMeshWrapper:
         leRatio = lhDistance / lvDistance
         return leRatio, reRatio
 
-    def eyesOpened(self, image, mesh) -> bool:
+    def eyesOpened(self, image, mesh) -> (bool, bool):
         if mesh:
             landmarks = self.landmarksDetection(image, mesh)
             ratios = self.blinkRatio(
@@ -125,18 +161,20 @@ class FaceMeshWrapper:
                 mediapipeIndices.RIGHT_EYE,
                 mediapipeIndices.LEFT_EYE,
             )
-
-            if sum(ratios) / 2 <= self.eyeThresh:
-                return True
-
-        return False
+            return ratios[0] <= self.eyeThresh, ratios[1] <= self.eyeThresh
+        return False, False
 
     def __call__(self, image):
         annotations = dict()
-
-        if image.shape != (256, 256, 3):
-            image = cv2.resize(image, (256, 256))
         mesh = self.predictFaceMesh(image)
-        annotations['eyeOpened'] = self.eyesOpened(image, mesh)
+
+        # left_opened, right_opened = self.eyesOpened(image, mesh)
+        left_eye = self.separate_eye(image, mesh, mediapipeIndices.LEFT_EYE)
+        right_eye = self.separate_eye(image, mesh, mediapipeIndices.RIGHT_EYE)
+
+        left_eye_opened = self.eyeWrapper(left_eye)
+        right_eye_opened = self.eyeWrapper(right_eye)
+        annotations['leftEyeOpened'] = left_eye_opened
+        annotations['rightEyeOpened'] = right_eye_opened
 
         return annotations
