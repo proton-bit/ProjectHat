@@ -2,7 +2,7 @@ import random
 
 import mediapipe as mp
 from .mediapipeIndices import mediapipeIndices
-from .eyesWrapper import EyesWrapper
+from .eyesClassificatorWrapper import EyesWrapper
 import numpy as np
 import json
 import math
@@ -132,8 +132,8 @@ class FaceMeshWrapper:
         rv_top = landmarks[right_indices[12]]
         rv_bottom = landmarks[right_indices[4]]
         # draw lines on right eyes
-        # cv.line(image, rh_right, rh_left, utils.GREEN, 2)
-        # cv.line(image, rv_top, rv_bottom, utils.WHITE, 2)
+        cv2.line(image, rh_right, rh_left, (0, 255, 0), 2)
+        cv2.line(image, rv_top, rv_bottom, (255, 255, 255), 2)
         # LEFT_EYE
         # horizontal line
         lh_right = landmarks[left_indices[0]]
@@ -150,30 +150,31 @@ class FaceMeshWrapper:
         # Finding ratio of LEFT and Right Eyes
         reRatio = rhDistance / rvDistance
         leRatio = lhDistance / lvDistance
-        return leRatio, reRatio
+
+        return image, leRatio, reRatio
 
     def eyesOpened(self, image, mesh) -> (bool, bool):
         if mesh:
             landmarks = self.landmarksDetection(image, mesh)
-            ratios = self.blinkRatio(
+            image, leRatio, reRatio = self.blinkRatio(
                 image,
                 landmarks,
                 mediapipeIndices.RIGHT_EYE,
                 mediapipeIndices.LEFT_EYE,
             )
-            return ratios[0] <= self.eyeThresh, ratios[1] <= self.eyeThresh
+            return leRatio <= self.eyeThresh, reRatio <= self.eyeThresh
         return False, False
 
     def __call__(self, image):
         annotations = dict()
         mesh = self.predictFaceMesh(image)
 
-        # left_opened, right_opened = self.eyesOpened(image, mesh)
-        left_eye = self.separate_eye(image, mesh, mediapipeIndices.LEFT_EYE)
-        right_eye = self.separate_eye(image, mesh, mediapipeIndices.RIGHT_EYE)
+        left_eye_opened, right_eye_opened = self.eyesOpened(image, mesh)
+        # left_eye = self.separate_eye(image, mesh, mediapipeIndices.LEFT_EYE)
+        # right_eye = self.separate_eye(image, mesh, mediapipeIndices.RIGHT_EYE)
 
-        left_eye_opened = self.eyeWrapper(left_eye)
-        right_eye_opened = self.eyeWrapper(right_eye)
+        # left_eye_opened = self.eyeWrapper(left_eye)
+        # right_eye_opened = self.eyeWrapper(right_eye)
         annotations['leftEyeOpened'] = left_eye_opened
         annotations['rightEyeOpened'] = right_eye_opened
 

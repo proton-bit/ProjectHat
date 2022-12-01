@@ -3,18 +3,18 @@
     "blurry": false,
     "persons": {
         "person_1": {
-            "leftEyeOpened": 1.0,
-            "rightEyeOpened": 1.0,
+            "leftEyeOpened": 3.855894776611764,
+            "rightEyeOpened": 3.1454916383705145,
             "blurry": true
         },
         "person_2": {
-            "leftEyeOpened": 1.0,
-            "rightEyeOpened": 1.0,
+            "leftEyeOpened": 4.022437072223753,
+            "rightEyeOpened": 3.8439383539496985,
             "blurry": true
         },
         "person_3": {
-            "leftEyeOpened": 1.0,
-            "rightEyeOpened": 1.0,
+            "leftEyeOpened": 2.7406406388125952,
+            "rightEyeOpened": 3.4164914449041794,
             "blurry": true
         }
     }

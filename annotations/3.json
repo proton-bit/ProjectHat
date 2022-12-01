@@ -1,16 +1,70 @@
 {
     "number_of_persons": 2,
     "blurry": true,
-    "persons": {
-        "person_1": {
-            "leftEyeOpened": 1.0,
-            "rightEyeOpened": 1.0,
+    "persons": [
+        {
+            "leftEyeOpened": true,
+            "rightEyeOpened": true,
+            "age": 31,
+            "region": {
+                "x": 0,
+                "y": 0,
+                "w": 173,
+                "h": 152
+            },
+            "gender": "Man",
+            "race": {
+                "asian": 2.903786115348339,
+                "indian": 6.636875867843628,
+                "black": 5.828463658690453,
+                "white": 42.43169128894806,
+                "middle eastern": 23.266273736953735,
+                "latino hispanic": 18.932905793190002
+            },
+            "dominant_race": "white",
+            "emotion": {
+                "angry": 4.450730555589574e-12,
+                "disgust": 2.840043101688364e-27,
+                "fear": 4.433291002258976e-22,
+                "happy": 100.0,
+                "sad": 1.1921515241186762e-12,
+                "surprise": 5.9187781859206005e-19,
+                "neutral": 4.1958706731293205e-06
+            },
+            "dominant_emotion": "happy",
             "blurry": true
         },
-        "person_2": {
-            "leftEyeOpened": 1.0,
-            "rightEyeOpened": 1.0,
+        {
+            "leftEyeOpened": true,
+            "rightEyeOpened": true,
+            "age": 29,
+            "region": {
+                "x": 0,
+                "y": 0,
+                "w": 155,
+                "h": 135
+            },
+            "gender": "Man",
+            "race": {
+                "asian": 14.501644670963287,
+                "indian": 17.828726768493652,
+                "black": 15.888991951942444,
+                "white": 12.507160007953644,
+                "middle eastern": 13.513036072254181,
+                "latino hispanic": 25.76044201850891
+            },
+            "dominant_race": "latino hispanic",
+            "emotion": {
+                "angry": 2.8611292017145287e-11,
+                "disgust": 1.4329748206212888e-18,
+                "fear": 3.508866866779898e-16,
+                "happy": 99.99995827674617,
+                "sad": 5.447459214917005e-10,
+                "surprise": 4.646206385586971e-12,
+                "neutral": 4.417319111774691e-05
+            },
+            "dominant_emotion": "happy",
             "blurry": true
         }
-    }
+    ]
 }

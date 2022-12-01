@@ -3,8 +3,8 @@
     "blurry": true,
     "persons": {
         "person_1": {
-            "leftEyeOpened": 0.006664150394499302,
-            "rightEyeOpened": 0.004853155463933945,
+            "leftEyeOpened": false,
+            "rightEyeOpened": false,
             "blurry": true
         }
     }

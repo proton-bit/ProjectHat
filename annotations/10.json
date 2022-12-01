@@ -3,63 +3,63 @@
     "blurry": false,
     "persons": {
         "person_1": {
-            "leftEyeOpened": 1.0,
-            "rightEyeOpened": 1.0,
+            "leftEyeOpened": 3.5383612025908264,
+            "rightEyeOpened": 4.541215862457318,
             "blurry": true
         },
         "person_2": {
-            "leftEyeOpened": 1.0,
-            "rightEyeOpened": 1.0,
+            "leftEyeOpened": 3.269386622730461,
+            "rightEyeOpened": 3.0894262340191174,
             "blurry": true
         },
         "person_3": {
-            "leftEyeOpened": 1.0,
-            "rightEyeOpened": 1.0,
+            "leftEyeOpened": 3.292087155261513,
+            "rightEyeOpened": 3.0456299954140054,
             "blurry": true
         },
         "person_4": {
-            "leftEyeOpened": 1.0,
-            "rightEyeOpened": 1.0,
+            "leftEyeOpened": 3.744329045369811,
+            "rightEyeOpened": 3.320391543176798,
             "blurry": true
         },
         "person_5": {
-            "leftEyeOpened": 1.0,
-            "rightEyeOpened": 1.0,
+            "leftEyeOpened": 2.9773922927395486,
+            "rightEyeOpened": 2.4659848095803594,
             "blurry": true
         },
         "person_6": {
-            "leftEyeOpened": 1.0,
-            "rightEyeOpened": 1.0,
+            "leftEyeOpened": 2.2590812902288553,
+            "rightEyeOpened": 3.88329756778952,
             "blurry": true
         },
         "person_7": {
-            "leftEyeOpened": 1.0,
-            "rightEyeOpened": 1.0,
+            "leftEyeOpened": 2.8635642126552705,
+            "rightEyeOpened": 2.9677756498246812,
             "blurry": true
         },
         "person_8": {
-            "leftEyeOpened": 1.0,
-            "rightEyeOpened": 1.0,
+            "leftEyeOpened": 2.9417420270727606,
+            "rightEyeOpened": 2.473863375370596,
             "blurry": true
         },
         "person_9": {
-            "leftEyeOpened": 1.0,
-            "rightEyeOpened": 1.0,
+            "leftEyeOpened": 2.95057322446693,
+            "rightEyeOpened": 3.1780497164141406,
             "blurry": true
         },
         "person_10": {
-            "leftEyeOpened": 1.0,
-            "rightEyeOpened": 1.0,
+            "leftEyeOpened": 2.6311740579210876,
+            "rightEyeOpened": 3.132491021535417,
             "blurry": true
         },
         "person_11": {
-            "leftEyeOpened": 1.0,
-            "rightEyeOpened": 1.0,
+            "leftEyeOpened": 2.2803508501982757,
+            "rightEyeOpened": 3.420526275297414,
             "blurry": true
         },
         "person_12": {
-            "leftEyeOpened": 1.0,
-            "rightEyeOpened": 1.0,
+            "leftEyeOpened": 4.0,
+            "rightEyeOpened": 4.0,
             "blurry": true
         }
     }

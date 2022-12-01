@@ -1,6 +1,5 @@
-wrappers/__pycache__
+**/__pycache__/
 weights
-yolov7
 .idea
 .DS_Store
 .ideagit commit
