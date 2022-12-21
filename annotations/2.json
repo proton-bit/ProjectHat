@@ -1,6 +1,5 @@
 {
     "number_of_persons": 2,
-    "blurry": false,
     "persons": [
         {
             "leftEyeOpened": true,
@@ -31,8 +30,7 @@
                 "surprise": 2.0794692736410963e-13,
                 "neutral": 5.830010536556074e-05
             },
-            "dominant_emotion": "happy",
-            "blurry": true
+            "dominant_emotion": "happy"
         },
         {
             "leftEyeOpened": true,
@@ -63,8 +61,9 @@
                 "surprise": 1.0602700796055437e-16,
                 "neutral": 5.676942804733187e-08
             },
-            "dominant_emotion": "happy",
-            "blurry": true
+            "dominant_emotion": "happy"
         }
-    ]
+    ],
+    "blur_coeff": 0.0014179369018078695,
+    "blurry": false
 }

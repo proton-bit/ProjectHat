@@ -1,6 +1,5 @@
 {
     "number_of_persons": 4,
-    "blurry": false,
     "persons": [
         {
             "leftEyeOpened": true,
@@ -31,8 +30,7 @@
                 "surprise": 1.1947349576671429e-11,
                 "neutral": 0.0002172380845877342
             },
-            "dominant_emotion": "happy",
-            "blurry": true
+            "dominant_emotion": "happy"
         },
         {
             "leftEyeOpened": true,
@@ -63,8 +61,7 @@
                 "surprise": 6.02131749631201e-07,
                 "neutral": 0.29779257077486165
             },
-            "dominant_emotion": "happy",
-            "blurry": true
+            "dominant_emotion": "happy"
         },
         {
             "leftEyeOpened": true,
@@ -95,8 +92,7 @@
                 "surprise": 1.4834505179806001e-05,
                 "neutral": 0.026004452956840396
             },
-            "dominant_emotion": "happy",
-            "blurry": true
+            "dominant_emotion": "happy"
         },
         {
             "leftEyeOpened": true,
@@ -127,8 +123,9 @@
                 "surprise": 3.6555714306844324e-13,
                 "neutral": 1.1542617528448318e-05
             },
-            "dominant_emotion": "happy",
-            "blurry": true
+            "dominant_emotion": "happy"
         }
-    ]
+    ],
+    "blur_coeff": 0.00288,
+    "blurry": false
 }

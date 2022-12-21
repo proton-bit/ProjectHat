@@ -1,5 +1,6 @@
 {
     "number_of_persons": 0,
-    "blurry": true,
-    "persons": {}
+    "persons": [],
+    "blur_coeff": 0.0,
+    "blurry": true
 }

@@ -13,7 +13,7 @@ def NMS(boxes, overlapThresh = 0.6):
     areas = (x2 - x1 + 1) * (y2 - y1 + 1) # We add 1, because the pixel at the start as well as at the end counts
     # The indices of all boxes at start. We will redundant indices one by one.
     indices = np.arange(len(x1))
-    for i,box in enumerate(boxes):
+    for i, box in enumerate(boxes):
         # Create temporary indices
         temp_indices = indices[indices!=i]
         # Find out the coordinates of the intersection box

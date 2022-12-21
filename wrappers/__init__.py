@@ -2,5 +2,5 @@ from wrappers.poseEstimatorWrapper import PoseDetector
 from wrappers.faceMeshEstimatorWrapper import FaceMeshWrapper
 from wrappers.headDetectorWrapper import HeadDetector
 from wrappers.pipeWrapper import PipeWrapper
-from wrappers.blurDetection import BlurDetector
 from wrappers.eyesClassificatorWrapper import EyesWrapper
+from wrappers.BlurEstimationWrapper import BlurEstimator

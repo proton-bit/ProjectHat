@@ -1,21 +1,100 @@
 {
     "number_of_persons": 3,
-    "blurry": false,
-    "persons": {
-        "person_1": {
-            "leftEyeOpened": 5.088112507491249,
-            "rightEyeOpened": 3.8873012632302,
-            "blurry": true
+    "persons": [
+        {
+            "leftEyeOpened": true,
+            "rightEyeOpened": true,
+            "age": 42,
+            "region": {
+                "x": 0,
+                "y": 0,
+                "w": 188,
+                "h": 176
+            },
+            "gender": "Man",
+            "race": {
+                "asian": 1.7324390922450479,
+                "indian": 2.265802719640894,
+                "black": 0.37106701521974894,
+                "white": 57.91876661293308,
+                "middle eastern": 22.90817635704138,
+                "latino hispanic": 14.803750205263508
+            },
+            "dominant_race": "white",
+            "emotion": {
+                "angry": 0.009747973672347143,
+                "disgust": 7.072922802997539e-08,
+                "fear": 0.04425952211022377,
+                "happy": 26.39581263065338,
+                "sad": 44.2595511674881,
+                "surprise": 4.147294418999081e-05,
+                "neutral": 29.290589690208435
+            },
+            "dominant_emotion": "sad"
         },
-        "person_2": {
-            "leftEyeOpened": 3.1622776601683795,
-            "rightEyeOpened": 3.478505426185217,
-            "blurry": true
+        {
+            "leftEyeOpened": true,
+            "rightEyeOpened": true,
+            "age": 30,
+            "region": {
+                "x": 0,
+                "y": 0,
+                "w": 171,
+                "h": 167
+            },
+            "gender": "Man",
+            "race": {
+                "asian": 9.202752085770219e-12,
+                "indian": 1.0961250573870984e-06,
+                "black": 100.0,
+                "white": 3.070115740172654e-17,
+                "middle eastern": 1.1896484912549935e-18,
+                "latino hispanic": 8.111167987268075e-10
+            },
+            "dominant_race": "black",
+            "emotion": {
+                "angry": 0.00017760032733349362,
+                "disgust": 1.5373051442946206e-08,
+                "fear": 1.0413772066897309e-06,
+                "happy": 99.18206930160522,
+                "sad": 0.0022979369532549754,
+                "surprise": 0.0007915163223515265,
+                "neutral": 0.8146625012159348
+            },
+            "dominant_emotion": "happy"
         },
-        "person_3": {
-            "leftEyeOpened": 2.600577970441729,
-            "rightEyeOpened": 2.4977053689520194,
-            "blurry": true
+        {
+            "leftEyeOpened": true,
+            "rightEyeOpened": true,
+            "age": 28,
+            "region": {
+                "x": 0,
+                "y": 0,
+                "w": 153,
+                "h": 158
+            },
+            "gender": "Man",
+            "race": {
+                "asian": 0.007373160042334348,
+                "indian": 0.23481850512325764,
+                "black": 99.74902868270874,
+                "white": 7.498935588046152e-05,
+                "middle eastern": 1.2433338270056993e-05,
+                "latino hispanic": 0.008692136179888621
+            },
+            "dominant_race": "black",
+            "emotion": {
+                "angry": 16.263943910598755,
+                "disgust": 1.1383056640625,
+                "fear": 13.009025156497955,
+                "happy": 7.213873416185379,
+                "sad": 59.04237627983093,
+                "surprise": 2.1962132304906845,
+                "neutral": 1.1362725868821144
+            },
+            "dominant_emotion": "sad"
         }
-    }
+    ],
+    "blur_coeff": 0.0023907103825136613,
+    "blurry": false
 }

@@ -1,20 +1,21 @@
 from .faceMeshEstimatorWrapper import FaceMeshWrapper
 from .headDetectorWrapper import HeadDetector
-from .blurDetection import BlurDetector
 from .deepNetWrapper import annotate_face
+from .BlurEstimationWrapper import BlurEstimator
+import pprintjson
+import cv2
 import json
 
 
 class PipeWrapper:
     def __init__(self, config):
-
+        self.blurEstimator = BlurEstimator()
         self.max_aspect_ratio = config['max_aspect_ratio']
         self.detector_conf_thresh = config['detector_conf_thresh']
         self.detector = HeadDetector(
             config["detector_weights_path"],
             config["yaml_config_path"],
         )
-        self.blurDetector = BlurDetector(config["blur_thresh"])
         self.faceMesh = FaceMeshWrapper(config["face_mesh_eye_thresh"])
 
         self.findArea = lambda a: abs(a[2] - a[0]) * abs(a[3] - a[1])
@@ -115,11 +116,12 @@ class PipeWrapper:
         # Data to be written
         dictionary = dict(
             number_of_persons=len(coords),
-            blurry=bool(),
             persons=[]
         )
         # cv2.imshow("image", image)
-        dictionary["blurry"] = self.blurDetector(image)
+        Per, decision = self.blurEstimator(image)
+        dictionary["blur_coeff"] = Per
+        dictionary["blurry"] = decision
 
         for index, coord in enumerate(coords):
             # expand coordinates
@@ -137,12 +139,15 @@ class PipeWrapper:
             head_annotations = self.faceMesh(head)
             # obtain features and expressions from face
             head_annotations.update(annotate_face(head))
-            # estimate if the specific head is blurry
-            blurry = self.blurDetector(head)
-            # add information about blur of the head to annotations
-            head_annotations['blurry'] = blurry
+            # # estimate if the specific head is blurry
+            # Per, decision = self.blurEstimator(head)
+            # # add information about blur of the head to annotations
+            # head_annotations["blur_coeff"] = Per
+            # head_annotations["blurry"] = decision
             # write annotation to json file
             dictionary["persons"].append(head_annotations)
+
+
             # display face if eyes closed
 
             # if not (head_annotations["leftEyeOpened"] and head_annotations["rightEyeOpened"]):
@@ -157,6 +162,7 @@ class PipeWrapper:
             #     cv2.destroyAllWindows()
 
         # Serializing json
+        pprintjson.pprintjson(dictionary, indent=4)
         json_object = json.dumps(dictionary, indent=4)
 
         # Writing to sample.json

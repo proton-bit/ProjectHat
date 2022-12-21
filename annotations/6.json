@@ -1,16 +1,69 @@
 {
     "number_of_persons": 2,
-    "blurry": false,
-    "persons": {
-        "person_1": {
-            "leftEyeOpened": 3.0751662392208865,
-            "rightEyeOpened": 3.0763699854831668,
-            "blurry": true
+    "persons": [
+        {
+            "leftEyeOpened": true,
+            "rightEyeOpened": true,
+            "age": 34,
+            "region": {
+                "x": 0,
+                "y": 0,
+                "w": 225,
+                "h": 199
+            },
+            "gender": "Man",
+            "race": {
+                "asian": 95.77463269233704,
+                "indian": 1.290182489901781,
+                "black": 0.021714663307648152,
+                "white": 0.37834332324564457,
+                "middle eastern": 0.0011124320735689253,
+                "latino hispanic": 2.534014731645584
+            },
+            "dominant_race": "asian",
+            "emotion": {
+                "angry": 0.005775555090173638,
+                "disgust": 1.8484054278683613e-08,
+                "fear": 0.004051601959441347,
+                "happy": 0.7782395461642472,
+                "sad": 1.1688239637806395,
+                "surprise": 0.0001650375664356961,
+                "neutral": 98.04294693725986
+            },
+            "dominant_emotion": "neutral"
         },
-        "person_2": {
-            "leftEyeOpened": 2.9793811989685244,
-            "rightEyeOpened": 2.652452253779487,
-            "blurry": true
+        {
+            "leftEyeOpened": true,
+            "rightEyeOpened": true,
+            "age": 26,
+            "region": {
+                "x": 0,
+                "y": 0,
+                "w": 217,
+                "h": 184
+            },
+            "gender": "Woman",
+            "race": {
+                "asian": 92.18415711114918,
+                "indian": 3.0326202621912643,
+                "black": 0.018322192043773288,
+                "white": 2.4193805552267365,
+                "middle eastern": 0.013729062448423361,
+                "latino hispanic": 2.3317915401707245
+            },
+            "dominant_race": "asian",
+            "emotion": {
+                "angry": 0.32293819418926206,
+                "disgust": 0.0007629603260296498,
+                "fear": 0.1582941367577992,
+                "happy": 9.681559931132789,
+                "sad": 0.4070032164903412,
+                "surprise": 0.42644159616181826,
+                "neutral": 89.00300198811304
+            },
+            "dominant_emotion": "neutral"
         }
-    }
+    ],
+    "blur_coeff": 0.0005784805244890089,
+    "blurry": true
 }
