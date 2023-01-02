@@ -9,7 +9,7 @@
 
 2. Collect info from photo
     - [x] Choose boxes contain people that we focus on
-    - [ ] Detect blurred images (general defocus and specific people)
+    - [x] Detect blurred images (general defocus and specific people)
     - [x] Number of people 
     - [x] Facial expressions/features
         - [x] yolo -> mediapipe
@@ -20,11 +20,3 @@
        - [x] Write information into json sheet
        - [x] write parser 
        - [x] collect annotations
-
-3. Installing a hat. Maybe via special constructor
-    - [x] Detect person 
-    - [x] Choose boxes contain people that we focus on
-    - [x] Detect face landmarks 
-    - [ ] compute center (x, y) coordinate of forehead
-    - [ ] adjust the mask to the position of the head
-    - [ ] Install Hat
