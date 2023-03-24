@@ -15,18 +15,7 @@
                 4. compute features using position of landmarks
                     1. closed eyes ✅
                     2. mouth expressions 
-
-            2. head-on solution ⛔️
-                1. Closed eyes
-                    1. Download dataset:
-                    https://www.kaggle.com/datasets/tauilabdelilah/mrl-eye-dataset
-                    2. write pipeline
-                    3. train net
-                2. Smiles
-                    1. Download dataset:
-                        link: None
-                    2. write pipeline
-                    3. train net
+                    
     5. Write information into json sheet
         1. write parser ✅
         2. collect annotations ✅
